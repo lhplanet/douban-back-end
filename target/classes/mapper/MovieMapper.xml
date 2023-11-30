@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sdu.mapper.MovieMapper">
+
+
+    <select id="getAllMovies" resultType="com.sdu.pojo.Movie">
+        select *
+        from movie
+    </select>
+
+    <select id="getTop10Movies" resultType="com.sdu.pojo.Movie">
+        select *
+        from movie
+        order by rating desc limit 10
+    </select>
+
+    <!--  通过用户输入的关键词keyword查找电影  -->
+    <select id="getMoviesByKeyword" resultType="com.sdu.pojo.Movie">
+        select *
+        from movie
+        where 1 = 1
+        <if test="keyword != null">
+            and name like concat('%', #{keyword}, '%')
+        </if>
+    </select>
+
+    <!--  查找Top250的电影  -->
+    <select id="getTop250Movies" resultType="com.sdu.pojo.Movie">
+        select *
+        from movie
+        order by rating desc limit 250
+    </select>
+
+</mapper>

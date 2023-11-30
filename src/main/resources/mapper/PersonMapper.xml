@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sdu.mapper.PersonMapper">
+
+    <!--根据MovieId查找人物-->
+    <select id="getPersonsByMovieId"  resultType="com.sdu.pojo.PersonVo">
+        SELECT p.*, mp.work
+        FROM person p
+        JOIN movie_person mp ON p.id = mp.person_id
+        WHERE 1 = 1
+        <if test="movieId != null">
+            and mp.movie_id = #{movieId}
+        </if>;
+    </select>
+
+<!--  根据id查找人物  -->
+<!--    <select id="getPersonById" resultType="com.sdu.pojo.Person">-->
+<!--        select *-->
+<!--        from person-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+
+</mapper>
