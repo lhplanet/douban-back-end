@@ -154,7 +154,9 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
 
         // 提取图片链接，转换成 List<String>
         String images = movie.getImages();
-        images = images.substring(2, images.length() - 2);
+        if (images != null && !images.isEmpty() && images.length() != 2) {
+            images = images.substring(2, images.length() - 2);
+        }
         List<String> imageList = Arrays.asList(images.split("', '"));
         movieVo.setImages(imageList);
 
@@ -203,7 +205,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
 
 
         String playSources = movie.getPlaySources();
-        if (playSources.length() != 2 && !playSources.isEmpty()) {
+        if (playSources != null && !playSources.isEmpty() && playSources.length() != 2) {
             playSources = playSources.substring(2, playSources.length() - 2);
         }
 
