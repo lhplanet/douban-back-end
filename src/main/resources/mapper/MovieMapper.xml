@@ -12,7 +12,7 @@
     <select id="getTop10Movies" resultType="com.sdu.pojo.Movie">
         select *
         from movie
-        order by rating desc limit 10
+        limit 0, 10
     </select>
 
     <!--  通过用户输入的关键词keyword查找电影  -->
@@ -25,11 +25,15 @@
         </if>
     </select>
 
-    <!--  查找Top250的电影  -->
+    <!--  查找Top250的电影
+    （原本应按分数排序，但会有一些歌曲分很高，而且豆瓣本身也不是只按照分数进行排名的，所以这里直接用数据库里前250条，
+    [当时爬数据的时候，就是先按照顺序爬的250，所以在最前面]，上面的查Top10也是一样）
+    -->
     <select id="getTop250Movies" resultType="com.sdu.pojo.Movie">
         select *
         from movie
-        order by rating desc limit 250
+        limit 0, 250
+--         order by rating desc limit 250
     </select>
 
 </mapper>
