@@ -49,5 +49,16 @@ public class MovieController {
         return movieService.getTop250Movies();
     }
 
+    /**
+     * 根据人物 id 获取最近的5部作品
+     */
+    @GetMapping("/getRecentMovieByPersonId")
+    public List<MovieVo> getRecentMovieByPersonId(@RequestParam String id) {
+        return movieService.getRecentMovieByPersonId(id);
+    }
 
+    @GetMapping("/getBestMovieByPersonId")
+    public List<MovieVo> getBestMovieByPersonId(@RequestParam String id) {
+        return movieService.getBestMovieByPersonId(id);
+    }
 }

@@ -32,4 +32,22 @@
         order by rating desc limit 250
     </select>
 
+    <select id="getRecentMovieByPersonId" resultType="com.sdu.pojo.Movie">
+        select *
+        from movie m
+        join movie_person mp on mp.movie_id = m.id
+        where mp.person_id = #{id}
+        order by m.year desc
+        limit 5
+    </select>
+
+    <select id="getBestMovieByPersonId" resultType="com.sdu.pojo.Movie">
+        select *
+        from movie m
+        join movie_person mp on mp.movie_id = m.id
+        where mp.person_id = #{id}
+        order by m.rating desc
+        limit 5
+    </select>
+
 </mapper>

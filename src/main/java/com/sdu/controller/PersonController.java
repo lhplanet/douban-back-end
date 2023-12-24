@@ -1,5 +1,6 @@
 package com.sdu.controller;
 
+import com.sdu.pojo.MovieVo;
 import com.sdu.pojo.Person;
 import com.sdu.pojo.PersonVo;
 import com.sdu.service.IPersonService;
@@ -28,7 +29,7 @@ public class PersonController {
      * @return
      */
     @GetMapping("/getPersonById")
-    public Person getPersonById(@RequestParam Integer id) {
+    public PersonVo getPersonById(@RequestParam Integer id) {
         return personService.getPersonById(id);
     }
 
@@ -41,4 +42,5 @@ public class PersonController {
     public List<PersonVo> getPersonsByMovieId(@RequestParam Integer id) {
         return personService.getPersonsByMovieId(id);
     }
+
 }
