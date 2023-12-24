@@ -36,6 +36,6 @@ public class MovieVo {
     private List<String> images;
     private Map<String, Map<String, String>> awards;
     private Map<String, String> alsoLikes;
-    private List<String> comments;
+    private List<Map<String, Object>> comments;
     private Map<String, String> playSources;
 }

@@ -1,6 +1,8 @@
 package com.sdu.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sdu.mapper.MovieMapper;
 import com.sdu.pojo.Movie;
 import com.sdu.pojo.MovieVo;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -31,6 +34,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
     public MovieVo getMovieById(Integer id) {
         Movie movie = movieMapper.selectById(id);
         MovieVo movieVo = parseMovieToMovieVo(movie);
+
         return movieVo;
     }
 
@@ -201,9 +205,33 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
 
         // 提取 comments 字段，转换成 List<String>
         String comments = movie.getComments();
-        comments = comments.substring(2, comments.length() - 2);
-        List<String> commentsList = Arrays.asList(comments.split("', '"));
-        movieVo.setComments(commentsList);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // 将字符串解析为 List<Map<String, Object>>
+            List<Map<String, Object>> commentList = objectMapper.readValue(
+                    comments.replace("'", "\""),
+                    new TypeReference<List<Map<String, Object>>>() {}
+            );
+
+            // 输出列表
+            System.out.println(commentList);
+            for (Map<String, Object> element : commentList){
+                System.out.println(element);
+            }
+            //System.out.println(commentsList.);
+            movieVo.setComments(commentList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        comments = comments.substring(2, comments.length() - 2);
+//        System.out.println("aaaaa"+comments);
+//        List<String> commentsList = Arrays.asList(comments.split("', '|'}, {' "));
+//        System.out.println(commentList);
+//        for (String element : commentsList){
+//            System.out.println(element);
+//        }
+//        //System.out.println(commentsList.);
+//        movieVo.setComments(commentsList);
 
 
         String playSources = movie.getPlaySources();

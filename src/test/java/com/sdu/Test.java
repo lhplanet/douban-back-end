@@ -1,5 +1,6 @@
 package com.sdu;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -12,4 +13,6 @@ public class Test {
 
     JSONObject jsonObject = new JSONObject(s);
 
+    public Test() throws JSONException {
+    }
 }
