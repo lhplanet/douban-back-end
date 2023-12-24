@@ -206,7 +206,9 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
 
         // 提取 alsoLike 字段，转换成 Map<String, String>
         String alsoLikes = movie.getAlsoLike();
-        alsoLikes = alsoLikes.substring(0, alsoLikes.length() - 1);
+        if (alsoLikes != null && !alsoLikes.isEmpty() && alsoLikes.length() != 2) {
+            alsoLikes = alsoLikes.substring(0, alsoLikes.length() - 1);
+        }
         Map<String, String> moviesMap = new HashMap<>();
 
         String[] movies = alsoLikes.split(",");
