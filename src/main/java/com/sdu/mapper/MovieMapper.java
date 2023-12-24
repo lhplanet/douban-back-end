@@ -2,6 +2,7 @@ package com.sdu.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sdu.pojo.Movie;
+import com.sdu.pojo.MovieVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,4 +19,6 @@ public interface MovieMapper extends BaseMapper<Movie> {
     public List<Movie> getTop10Movies();
     public List<Movie> getMoviesByKeyword(@Param("keyword") String keyword);
     public List<Movie> getTop250Movies();
+    public List<Movie> getRecentMovieByPersonId(@Param("id") String Id);
+    public List<Movie> getBestMovieByPersonId(@Param("id") String Id);
 }

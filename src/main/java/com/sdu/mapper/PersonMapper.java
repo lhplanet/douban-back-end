@@ -1,6 +1,8 @@
 package com.sdu.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sdu.pojo.Movie;
+import com.sdu.pojo.MovieVo;
 import com.sdu.pojo.Person;
 import com.sdu.pojo.PersonVo;
 import org.apache.ibatis.annotations.Mapper;

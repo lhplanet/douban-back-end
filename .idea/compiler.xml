@@ -15,6 +15,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
+=======
+      <module name="back-end" options="-parameters" />
+>>>>>>> 05e3722ee12f6ef736dc2ab028f0ab0f5b72b3fc
       <module name="douban-back-end" options="-parameters" />
     </option>
   </component>

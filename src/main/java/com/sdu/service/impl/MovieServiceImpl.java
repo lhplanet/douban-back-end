@@ -99,7 +99,29 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
         return movieVoList;
     }
 
-
+    /**
+     * 根据人物 id 获取最近的 5 部作品
+     */
+    @Override
+    public List<MovieVo> getRecentMovieByPersonId(String id) {
+        List<Movie> movieList = movieMapper.getRecentMovieByPersonId(id);
+        List<MovieVo> movieVoList = new ArrayList<>();
+        for (Movie movie : movieList) {
+            MovieVo movieVo = parseMovieToMovieVo(movie);
+            movieVoList.add(movieVo);
+        }
+        return movieVoList;
+    }
+    @Override
+    public List<MovieVo> getBestMovieByPersonId(String id) {
+        List<Movie> movieList = movieMapper.getBestMovieByPersonId(id);
+        List<MovieVo> movieVoList = new ArrayList<>();
+        for (Movie movie : movieList) {
+            MovieVo movieVo = parseMovieToMovieVo(movie);
+            movieVoList.add(movieVo);
+        }
+        return movieVoList;
+    }
 
     /**
      * 将 实体类Movie 转换成 返回类MovieVo
@@ -161,6 +183,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
         if (images != null && !images.isEmpty() && images.length() != 2) {
             images = images.substring(2, images.length() - 2);
         }
+
         List<String> imageList = Arrays.asList(images.split("', '"));
         movieVo.setImages(imageList);
 
@@ -235,7 +258,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
 
 
         String playSources = movie.getPlaySources();
-        if (playSources != null && !playSources.isEmpty() && playSources.length() != 2) {
+        if (playSources != null && playSources.length() != 2 && !playSources.isEmpty()) {
             playSources = playSources.substring(2, playSources.length() - 2);
         }
 

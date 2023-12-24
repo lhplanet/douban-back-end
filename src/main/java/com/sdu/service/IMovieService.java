@@ -19,8 +19,8 @@ public interface IMovieService extends IService<Movie> {
 
     public List<MovieVo> getTop250Movies();
 
-
-
+    public List<MovieVo> getRecentMovieByPersonId(String id);
+    public List<MovieVo> getBestMovieByPersonId(String id);
 
 
     public MovieVo parseMovieToMovieVo(Movie movie);
